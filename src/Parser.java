@@ -18,14 +18,14 @@ public class Parser {
     }
     int parseCount(File file){
         String[] words = null;
-        String findWord = "Страдание";
+        String findWord = "^[Сс]трада(.*)";
         int count = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(file))){
             String line;
             while((line = br.readLine()) !=null){
                 words = line.split(" ");
                 for(String word : words){
-                    if(word.toUpperCase().contains(findWord.toUpperCase())){
+                    if(word.matches(findWord)){
                         count++;
                     }
                 }
@@ -38,11 +38,11 @@ public class Parser {
     }
 
     int parseCountScaner(File file){
-        String findWord = "Страдание";
+        String findWord = "^[Сс]трада(.*)";
         int count = 0;
         try (Scanner scanner = new Scanner(new FileReader(file))){
         while (scanner.hasNext())
-            if(scanner.nextLine().toUpperCase().contains(findWord.toUpperCase())){
+            if(scanner.nextLine().matches(findWord)){
                 count++;
             }
         } catch (IOException e) {
